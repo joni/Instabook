@@ -19,7 +19,7 @@ $this->breadcrumbs=array(
 
 <p style="margin-bottom: 20px;"><?= nl2br($book->description) ?></p>
 
-<h3><?= CHtml::link('Leer', array('read', 'id'=>$book->google_id))?></h3>
+<h3><?= CHtml::link('Leer', array('read','id'=>$book->google_id),  array('rel'=> 'shadowbox;width=910')); ?></h3>
 <h3>Compralo en</h3>
 <ul>
     <li><a href="http://www.amazon.es/s/ref=nb_sb_noss?field-keywords=<?= $book->isbn_10; ?>" target="_blank">Amazon.com</a></li>

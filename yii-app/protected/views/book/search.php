@@ -14,9 +14,10 @@ $this->breadcrumbs=array(
 <? $this->endWidget() ?>
 </div>
 </div>
-<div class="span-11 last">
+<div class="span-10" >
 <h2>Recomendamos:</h2>
-
+<div class="span-5 last">
+    <h3>Libros</h3>
 <ul>
 <li><?= CHtml::link('Huckleberry Finn', array('view','id'=>'khkU4KZ5o-4C')) ?></li>
 <li><?= CHtml::link('Cloud Atlas', array('view','id'=>'EoxXLiC0uAIC')) ?></li>
@@ -24,6 +25,17 @@ $this->breadcrumbs=array(
 <li><?= CHtml::link('Valis', array('view','id'=>'1V9_sv_BudkC')) ?></li>
 <li><?= CHtml::link('Sinuhe, The Egyptian', array('view','id'=>'FEvh724F20UC')) ?></li>
 </ul>
+</div>
+<div class="span-5 last">
+<h3>Autores</h3>
+<ul>
+<li><?= CHtml::link('Huckleberry Finn', array('view','id'=>'khkU4KZ5o-4C')) ?></li>
+<li><?= CHtml::link('Cloud Atlas', array('view','id'=>'EoxXLiC0uAIC')) ?></li>
+<li><?= CHtml::link('Excession', array('view','id'=>'OwFWHk4qn90C')) ?></li>
+<li><?= CHtml::link('Valis', array('view','id'=>'1V9_sv_BudkC')) ?></li>
+<li><?= CHtml::link('Sinuhe, The Egyptian', array('view','id'=>'FEvh724F20UC')) ?></li>
+</ul>
+</div>
 </div>
 
 
