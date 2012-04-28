@@ -3,7 +3,7 @@ body
 	margin: 0;
 	padding: 0;
 	color: #555;
-	font: normal 10pt Arial,Helvetica,sans-serif;
+	font: normal 14pt Arial,Helvetica,sans-serif;
 	background: #EFEFEF;
 }
 
@@ -237,5 +237,7 @@ div.search-form
 
 .book.view {
     clear: left;
+
+    overflow: auto;
 }
 
