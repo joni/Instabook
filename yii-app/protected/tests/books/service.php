@@ -1,3 +1,8 @@
 <?php
+require_once(dirname(__FILE__) . '/../../models/BooksService.php');
+$query = "cloud atlas";
 
-require_once(dirname(__FILE__) .'/../../models/Book.php');
+$service = new BooksService();
+$books = $service->search($query);
+
+die(var_dump($books));
