@@ -64,7 +64,8 @@ class BooksService
                 {
                     $book->link = $item->selfLink;
                 }
-                if(isset($item->id)){
+                if (isset($item->id))
+                {
                     $book->google_id = $item->id;
                 }
                 if (isset($item->volumeInfo->title))
@@ -81,14 +82,23 @@ class BooksService
                 }
                 if (isset($item->volumeInfo->authors[0]))
                 {
-                   $book->author = $item->volumeInfo->authors[0];
+                    $book->author = $item->volumeInfo->authors[0];
                 }
                 if (isset($item->industryIdentifiers->categories[0]))
                 {
                     $book->category = $item->industryIdentifiers->categories[0];
                 }
-                if(isset($item->accessInfo->webReaderLink)){
+                if (isset($item->accessInfo->webReaderLink))
+                {
                     $book->web_reader_link = $item->accessInfo->webReaderLink;
+                }
+                if (isset($item->volumeInfo->industryIdentifiers[0]->identifier))
+                {
+                    $book->isbn_10 = $item->volumeInfo->industryIdentifiers[0]->identifier;
+                }
+                if (isset($item->volumeInfo->industryIdentifiers[1]->identifier))
+                {
+                    $book->isbn_13 = $item->volumeInfo->industryIdentifiers[1]->identifier;
                 }
                 @ $book_info_result = json_decode(file_get_contents($item->selfLink));
                 if ($book_info_result)
@@ -98,8 +108,11 @@ class BooksService
                         $book->image = $book_info_result->volumeInfo->imageLinks->thumbnail;
                     }
                 }
-                //die (var_dump($item));
-                $book->save();
+                if (!BooksParseService::getInstance()->get($book->google_id))
+                {
+                    $book->save();
+                }
+
                 $this->collection->add($book);
             }
         }
