@@ -19,6 +19,7 @@ class BookController extends Controller
     }
 
     public function actionRead($id) {
+        $this->layout = false;
         $book = new Book($id);
         $this->render('read', array('book'=>$book));
     }
