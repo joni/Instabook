@@ -18,6 +18,11 @@ class BookController extends Controller
         ));
     }
 
+    public function actionRead($id) {
+        $book = new Book($id);
+        $this->render('read', array('book'=>$book));
+    }
+
     public function actionVote($id, $vote) {
         $book = new Book($id);
         if ($vote == -1) {

@@ -60,6 +60,7 @@ class Book
         if ($google_id)
         {
             $this->google_id = (string) $google_id;
+            BooksService::getInstance()->get($this->google_id);
             if ($response = BooksParseService::getInstance()->get($this->google_id))
             {
                 foreach ($response as $key => $value)

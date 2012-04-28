@@ -1,34 +1,14 @@
-<?php
-$this->breadcrumbs=array(
-	'Book'=>array('/book'),
-	'View',
-);?>
-<div style="book view">
-<div style="float: right; margin: 0 10px 10px 0">
-<?= CHtml::image($book->image) ?>
-</div>
 <h1><?= $book->title ?> (<span style="color:green">+<?=$book->vote?></span> / <span style="color:red">-<?=$book->n_vote?></span>)
-</h1>
 <h2>By <?=$book->author ?>
-
 
 <span style="color: green"><?= CHtml::link('+1',array('vote','id'=>$book->google_id,'vote'=>+1)) ?> </span> /
 <span style="color: red">
 <?= CHtml::link('-1',array('vote','id'=>$book->google_id,'vote'=>-1)) ?></a>
 </span></h2>
-
-<p style="margin-bottom: 20px;"><?= nl2br($book->description) ?></p>
-
-<h3><?= CHtml::link('Leer', array('read', 'id'=>$book->google_id))?></h3>
-<h3>Compralo en</h3>
-<ul>
-    <li><a href="http://www.amazon.es/s/ref=nb_sb_noss?field-keywords=<?php $book->isbn_10; ?>" target="_blank">Amazon.com</li>
-    <li>Casa del libro</li>
-    <li>El corte inglés</li></a>
-</ul>
-</div>
-
-    <div style="clear: both;"></div>
+<script type="text/javascript" src="http://books.google.com/books/previewlib.js"></script>
+<script type="text/javascript">
+GBS_insertEmbeddedViewer('<?=$book->google_id?>',910,500);
+</script>
 
 <div class="fb-comments" data-href="<?php echo Yii::app()->request->baseUrl.'/'.$book->google_id; ?>" data-num-posts="10" data-width="910"></div>
 

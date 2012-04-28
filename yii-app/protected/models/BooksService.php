@@ -52,6 +52,60 @@ class BooksService
         $this->initialize();
     }
 
+    public function get($id)
+    {
+        @ $result = json_decode(file_get_contents($this->goole_rest_api_search . '/' . urlencode($id)));
+        if ($result)
+        {
+            $item=$result;
+                $book = new Book();
+                if (isset($item->selfLink))
+                {
+                    $book->link = $item->selfLink;
+                }
+                if(isset($item->id)){
+                    $book->google_id = $item->id;
+                }
+                if (isset($item->volumeInfo->title))
+                {
+                    $book->title = $item->volumeInfo->title;
+                }
+                if (isset($item->volumeInfo->subtitle))
+                {
+                    $book->title .= ' : ' . $item->volumeInfo->subtitle;
+                }
+                if (isset($item->volumeInfo->description))
+                {
+                    $book->description = $item->volumeInfo->description;
+                }
+                if (isset($item->volumeInfo->authors[0]))
+                {
+                   $book->author = $item->volumeInfo->authors[0];
+                }
+                if (isset($item->industryIdentifiers->categories[0]))
+                {
+                    $book->category = $item->industryIdentifiers->categories[0];
+                }
+                if(isset($item->accessInfo->webReaderLink)){
+                    $book->web_reader_link = $item->accessInfo->webReaderLink;
+                }
+                @ $book_info_result = json_decode(file_get_contents($item->selfLink));
+                if ($book_info_result)
+                {
+                    if (isset($book_info_result->volumeInfo->imageLinks->thumbnail))
+                    {
+                        $book->image = $book_info_result->volumeInfo->imageLinks->thumbnail;
+                    }
+                }
+                if (!BooksParseService::getInstance()->get($book->google_id))
+                {
+                    $book->save();
+                }
+                return $book;
+        }
+        return null;
+    }
+
     public function search($query)
     {
         @ $result = json_decode(file_get_contents($this->goole_rest_api_search . '?q=' . urlencode($query)));
@@ -108,11 +162,6 @@ class BooksService
                         $book->image = $book_info_result->volumeInfo->imageLinks->thumbnail;
                     }
                 }
-                if (!BooksParseService::getInstance()->get($book->google_id))
-                {
-                    $book->save();
-                }
-
                 $this->collection->add($book);
             }
         }
