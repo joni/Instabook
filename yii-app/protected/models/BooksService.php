@@ -98,6 +98,7 @@ class BooksService
                         $book->image = $book_info_result->volumeInfo->imageLinks->thumbnail;
                     }
                 }
+                //die (var_dump($item));
                 $book->save();
                 $this->collection->add($book);
             }
