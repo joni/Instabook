@@ -63,7 +63,9 @@ class BooksService
                 if (isset($item->selfLink))
                 {
                     $book->link = $item->selfLink;
-                    $book->hash = md5($book->link);
+                }
+                if(isset($item->id)){
+                    $book->google_id = $item->id;
                 }
                 if (isset($item->volumeInfo->title))
                 {
@@ -79,11 +81,14 @@ class BooksService
                 }
                 if (isset($item->volumeInfo->authors[0]))
                 {
-                    $book->author = $item->volumeInfo->authors[0];
+                   $book->author = $item->volumeInfo->authors[0];
                 }
                 if (isset($item->industryIdentifiers->categories[0]))
                 {
                     $book->category = $item->industryIdentifiers->categories[0];
+                }
+                if(isset($item->accessInfo->webReaderLink)){
+                    $book->web_reader_link = $item->accessInfo->webReaderLink;
                 }
                 @ $book_info_result = json_decode(file_get_contents($item->selfLink));
                 if ($book_info_result)
@@ -93,10 +98,10 @@ class BooksService
                         $book->image = $book_info_result->volumeInfo->imageLinks->thumbnail;
                     }
                 }
+                $book->save();
                 $this->collection->add($book);
             }
         }
-
         return $this->collection;
     }
 

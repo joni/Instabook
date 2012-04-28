@@ -39,7 +39,6 @@ class BooksParseService
         {
             self::$instances[$class] = new $class();
         }
-
         return self::$instances[$class];
     }
 
@@ -57,19 +56,18 @@ class BooksParseService
         
     }
 
-    public function get($hash = null)
+    public function get($google_id = null)
     {
         $params = array(
             'className' => 'Books',
             'object' => array(),
             'query' => array(
-                'hash' => $hash
+                'google_id' => $google_id
             ),
             'limit' => 1,
-        );
+        );       
         $response = json_decode($this->parse->query($params));
-
-        if ($response->results)
+        if ($response && isset($response->results) && count($response->results))
         {
             return $response->results[0];
         } else
@@ -80,29 +78,19 @@ class BooksParseService
 
     public function save(Book $book)
     {
-        if ($response = $this->get($book->hash))
-        {
+        if ($response = $this->get($book->google_id))
+        {            
             $params = array(
                 'className' => 'Books',
                 'objectId' => $response->objectId,
-                'object' => array(
-                    'hash' => $book->hash,
-                    'link' => $book->link,
-                    'title' => $book->title,
-                    'description' => $book->description,
-                )
+                'object' => $book->toArray(),
             );
             $this->parse->update($params);
         } else
         {
             $params = array(
                 'className' => 'Books',
-                'object' => array(
-                    'hash' => $book->hash,
-                    'link' => $book->link,
-                    'title' => $book->title,
-                    'description' => $book->description,
-                )
+                'object' => $book->toArray(),
             );
             $this->parse->create($params);
         }
