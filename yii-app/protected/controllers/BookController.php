@@ -7,8 +7,8 @@ class BookController extends Controller
     {
         $mdl = new BookSearchForm;
         $results = array();
-        if (!empty($_POST['BookSearchForm']['query'])) {
-            $mdl->query = $_POST['BookSearchForm']['query'];
+        if (!empty($_GET['BookSearchForm']['query'])) {
+            $mdl->query = $_GET['BookSearchForm']['query'];
             $results = $mdl->search();
         }
 
@@ -21,7 +21,7 @@ class BookController extends Controller
     public function actionVote($id, $vote) {
         $book = new Book($id);
         $book->vote($vote);
-        $this->redirect(array('view', 'id'=>$id));
+        $this->redirect(Yii::app()->request->urlReferrer);
     }
 
     public function actionView($id)
