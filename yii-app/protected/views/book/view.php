@@ -11,12 +11,24 @@ $this->breadcrumbs=array(
 </h1>
 <h2>By <?=$book->author ?></h2>
 
-<p><?= nl2br($book->description) ?></p>
+<p style="margin-bottom: 20px;"><?= nl2br($book->description) ?></p>
+
 <span style="color: green"><?= CHtml::link('+1',array('vote','id'=>$book->google_id,'vote'=>+1)) ?> </span> /
 <span style="color: red">
 <?= CHtml::link('-1',array('vote','id'=>$book->google_id,'vote'=>-1)) ?></a>
 </span>
 </div>
+
+<div style="margin: 20px">
+<h3>Compralo en</h3>
+<ul>
+    <li><a href="http://www.amazon.es/s/ref=nb_sb_noss?field-keywords=<?php $book->isbn_10; ?>" target="_blank">Amazon.com</li>
+    <li>Casa del libro</li>
+    <li>El corte inglés</li>
+</ul>
+</div>
+
+    <div style="clear: both;"></div>
 
 <div class="fb-comments" data-href="<?php echo Yii::app()->request->baseUrl; ?>" data-num-posts="10" data-width="910"></div>
 

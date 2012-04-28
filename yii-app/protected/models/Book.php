@@ -15,7 +15,6 @@
 
 class Book
 {
-
     public $link = null;
     public $title = null;
     public $description = null;
@@ -25,6 +24,8 @@ class Book
     public $n_vote = 0;
     public $category = null;
     public $author = null;
+    public $isbn_10 = null;
+    public $isbn_13 = null;
 
     public function save()
     {
