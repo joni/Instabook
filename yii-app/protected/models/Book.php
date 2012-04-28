@@ -18,22 +18,37 @@ class Book
 
     public $link = null;
     public $title = null;
-    public $author = null;
     public $description = null;
-    public $category = null;
     public $image = null;
     public $hash = null;
+    public $vote = 0;
+    public $category = null;
+    public $author = null;
 
     public function save()
     {
         // ..
     }
 
-    public function vote($vote) {
-
+    public function vote($vote = 1)
+    {
+        
     }
 
-    public function __construct($hash = null) {
-        // if $hash != null load from PARSE
+    public function __construct($hash = null)
+    {
+        if ($hash)
+        {
+            $this->hash = (string) $hash;
+            if ($response = BooksParseService::getInstance()->get($this->hash))
+            {
+                foreach ($response as $key => $value)
+                {
+                    $this->$key = $value;
+                }
+                die(var_dump($this));
+            }
+        }
     }
+
 }

@@ -57,13 +57,13 @@ class BooksParseService
         
     }
 
-    public function get(Book $book)
+    public function get($hash = null)
     {
         $params = array(
             'className' => 'Books',
             'object' => array(),
             'query' => array(
-                'hash' => $book->hash . '23452'
+                'hash' => $hash
             ),
             'limit' => 1,
         );
@@ -74,13 +74,13 @@ class BooksParseService
             return $response->results[0];
         } else
         {
-            echo false;
+            return false;
         }
     }
 
     public function save(Book $book)
     {
-        if ($response = $this->get($book))
+        if ($response = $this->get($book->hash))
         {
             $params = array(
                 'className' => 'Books',
@@ -107,4 +107,5 @@ class BooksParseService
             $this->parse->create($params);
         }
     }
+
 }
