@@ -30,4 +30,8 @@ class Book
     public function vote($vote) {
 
     }
+
+    public function __construct($hash = null) {
+        // if $hash != null load from PARSE
+    }
 }
