@@ -2,12 +2,8 @@
 
 class BookController extends Controller
 {
-    public function actionIndex()
-    {
-        $this->render('index');
-    }
 
-    public function actionSearch()
+    public function actionIndex()
     {
         $mdl = new BookSearchForm;
         $results = array();
