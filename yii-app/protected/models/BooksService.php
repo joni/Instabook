@@ -63,7 +63,7 @@ class BooksService
                 if (isset($item->selfLink))
                 {
                     $book->link = $item->selfLink;
-                    $book->link = md5($book->link);
+                    $book->hash = md5($book->link);
                 }
                 if (isset($item->volumeInfo->title))
                 {
