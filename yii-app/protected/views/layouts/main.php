@@ -13,7 +13,7 @@
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
-        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/shadowbox/shadowbox.css" />       
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/shadowbox/shadowbox.css" /> 
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -22,8 +22,11 @@
 
 <div class="container" id="page">
 
-	<div id="header">
-		<div id="logo">insta<strong>book</strong> (β)</div>
+	<div id="header">            
+		<div id="logo">
+                    <img src="http://cdn1.iconfinder.com/data/icons/iconset-addictive-flavour/png/splash_beta_lightblue.png" />
+                    <span>&#305;nsta<strong>Books</strong></span>
+                </div>
 	</div><!-- header -->
 
 	<div id="mainmenu">
