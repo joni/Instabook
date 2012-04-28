@@ -1,3 +1,9 @@
+<?php
+$this->breadcrumbs=array(
+	'Book'=>array('/book'),
+	'View',
+);?>
+
 <h1><?= $book->title ?> (<span style="color:green">+<?=$book->vote?></span> / <span style="color:red">-<?=$book->n_vote?></span>)
 <h2>By <?=$book->author ?>
 

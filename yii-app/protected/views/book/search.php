@@ -3,8 +3,9 @@ $this->breadcrumbs=array(
 	'Book'=>array('/book'),
 	'Search',
 );?>
-<h1>Search books</h1>
 
+<div class="span-11 colborder">
+<h1>Busca tu favorito</h1>
 <div class="form">
 <? $form = $this->beginWidget('CActiveForm', array('method'=>'GET')) ?>
 <?= $form->errorSummary($model) ?>
@@ -12,10 +13,23 @@ $this->breadcrumbs=array(
 <?= CHtml::submitButton('Search') ?>
 <? $this->endWidget() ?>
 </div>
+</div>
+<div class="span-11 last">
+<h2>Recomendamos:</h2>
+
+<ul>
+<li><?= CHtml::link('Huckleberry Finn', array('view','id'=>'khkU4KZ5o-4C')) ?></li>
+<li><?= CHtml::link('Cloud Atlas', array('view','id'=>'EoxXLiC0uAIC')) ?></li>
+<li><?= CHtml::link('Excession', array('view','id'=>'OwFWHk4qn90C')) ?></li>
+<li><?= CHtml::link('Valis', array('view','id'=>'1V9_sv_BudkC')) ?></li>
+<li><?= CHtml::link('Sinuhe, The Egyptian', array('view','id'=>'FEvh724F20UC')) ?></li>
+</ul>
+</div>
+
 
 <? if (!empty($books)): ?>
 <? if ($books->count() == 0): ?>
-<div class="error">No ha resultados</div>
+<div class="error">No hay resultados</div>
 <? else: ?>
 <div class="book list">
 <? foreach ($books->toArray() as $book): ?>
