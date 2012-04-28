@@ -29,11 +29,6 @@ class BooksService
     {
         $this->goole_rest_api_search = 'https://www.googleapis.com/books/v1/volumes';
         $this->collection = new BooksCollection();
-
-        $this->parse = new parseRestClient(array(
-                    'appid' => 'u5H31glPx0jAhIpud6NhnEMzCQhEEIPgH5yk10fm',
-                    'restkey' => 'sBPGrYzBu2HKwZ6bCsg2HAGwBlj5rRDpjzXuuAwo'
-                ));
     }
 
     final public static function getInstance()
@@ -91,19 +86,6 @@ class BooksService
         }
 
         return $this->collection;
-    }
-
-    public function save(Book $book)
-    {
-        $params = array(
-            'className' => 'Books',
-            'object' => array(
-                'title' => $book->title,
-                'author' => $book->author,
-                ''
-            )
-        );
-        $request = $parse->create($params);
     }
 
 }

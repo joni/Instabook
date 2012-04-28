@@ -16,18 +16,15 @@
 class Book
 {
 
-    public $google_link = null;
+    public $link = null;
     public $title = null;
-    public $description = null;
     public $author = null;
+    public $description = null;
     public $category = null;
-    
-    
-    public function save(){
-        $parse = new parseRestClient(array(
-    'appid' => 'YOUR APPLICATION ID',
-    'restkey' => 'YOUR REST KEY ID'
-));
+
+    public function save()
+    {
+        // ..
     }
 
 }
