@@ -6,12 +6,8 @@ require_once(dirname(__FILE__) . '/../../models/BooksParseService.php');
 
 $query = "el señor de los anillos";
 
-//$book = BooksParseService::getInstance()->get();
 
-$book = new Book('e39f626a2d59cf99af86e0339c9606b0');
-
+$book = new Book('3eb6fff19b5cbc9c5c78b90e5e008961');
+//$book->save();
 die( var_dump($book));
-
-
-
 echo PHP_EOL;echo PHP_EOL;

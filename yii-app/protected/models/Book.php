@@ -20,33 +20,51 @@ class Book
     public $title = null;
     public $description = null;
     public $image = null;
-    public $hash = null;
+    public $google_id = null;
     public $vote = 0;
+    public $n_vote = 0;
     public $category = null;
     public $author = null;
 
     public function save()
     {
-        // ..
+        BooksParseService::getInstance()->save($this);
     }
 
-    public function vote($vote = 1)
+    public function nVote()
     {
-        
+        $this->n_vote++;
+        $this->save();
     }
 
-    public function __construct($hash = null)
+    public function vote()
     {
-        if ($hash)
+        $this->vote++;
+        $this->save();
+    }
+
+    public function toArray()
+    {
+        $array = array();
+        foreach ($this as $key => $value)
         {
-            $this->hash = (string) $hash;
-            if ($response = BooksParseService::getInstance()->get($this->hash))
+            $array[$key] = $value;
+        }
+        unset($array["createdAt"], $array["updatedAt"], $array["objectId"]);
+        return $array;
+    }
+
+    public function __construct($google_id = null)
+    {
+        if ($google_id)
+        {
+            $this->google_id = (string) $google_id;
+            if ($response = BooksParseService::getInstance()->get($this->google_id))
             {
                 foreach ($response as $key => $value)
                 {
                     $this->$key = $value;
                 }
-                die(var_dump($this));
             }
         }
     }
