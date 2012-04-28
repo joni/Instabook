@@ -20,7 +20,12 @@ class BookController extends Controller
 
     public function actionVote($id, $vote) {
         $book = new Book($id);
-        $book->vote($vote);
+        if ($vote == -1) {
+            $book->nvote();
+        } else {
+            $book->vote();
+        }
+
         $this->redirect(Yii::app()->request->urlReferrer);
     }
 
