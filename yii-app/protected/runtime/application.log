@@ -65,3 +65,14 @@ REQUEST_URI=/index.php?r=book&BookSearchForm%5Bquery%5D=el+se%C3%B1or+de+los+ani
 in /home/dgonzalez/NetBeansProjects/Instabook/yii-app/protected/models/BooksParseService.php (72)
 in /home/dgonzalez/NetBeansProjects/Instabook/yii-app/protected/models/Book.php (30)
 in /home/dgonzalez/NetBeansProjects/Instabook/yii-app/protected/models/BooksService.php (101)
+2012/04/28 17:15:19 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "kl4ztrlFTTIC".' in /home/dgonzalez/NetBeansProjects/Instabook/yii-framework/web/CController.php:484
+Stack trace:
+#0 /home/dgonzalez/NetBeansProjects/Instabook/yii-framework/web/CController.php(271): CController->missingAction('kl4ztrlFTTIC')
+#1 /home/dgonzalez/NetBeansProjects/Instabook/yii-framework/web/CWebApplication.php(276): CController->run('kl4ztrlFTTIC')
+#2 /home/dgonzalez/NetBeansProjects/Instabook/yii-framework/web/CWebApplication.php(135): CWebApplication->runController('book/kl4ztrlFTT...')
+#3 /home/dgonzalez/NetBeansProjects/Instabook/yii-framework/base/CApplication.php(162): CWebApplication->processRequest()
+#4 /home/dgonzalez/NetBeansProjects/Instabook/yii-app/index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/index.php/book/kl4ztrlFTTIC
+HTTP_REFERER=http://instabook.local/index.php?r=book&BookSearchForm%5Bquery%5D=el+se%C3%B1or+de+los+anillos&yt0=Search&BookSearchForm%5Bquery%5D=tolkien&yt0=Search&BookSearchForm%5Bquery%5D=juego+de+tronos&yt0=Search&BookSearchForm%5Bquery%5D=el+se%C3%B1or+de+los+anillos&yt0=Search
+---
