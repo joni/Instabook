@@ -21,6 +21,8 @@ class Book
     public $author = null;
     public $description = null;
     public $category = null;
+    public $image = null;
+    public $hash = null;
 
     public function save()
     {
