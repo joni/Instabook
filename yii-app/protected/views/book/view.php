@@ -22,9 +22,9 @@ $this->breadcrumbs=array(
 <h3><?= CHtml::link('Leer', array('read', 'id'=>$book->google_id))?></h3>
 <h3>Compralo en</h3>
 <ul>
-    <li><a href="http://www.amazon.es/s/ref=nb_sb_noss?field-keywords=<?php $book->isbn_10; ?>" target="_blank">Amazon.com</li>
-    <li>Casa del libro</li>
-    <li>El corte inglés</li></a>
+    <li><a href="http://www.amazon.es/s/ref=nb_sb_noss?field-keywords=<?= $book->isbn_10; ?>" target="_blank">Amazon.com</a></li>
+    <li><a href="http://www.casadellibro.com/homeAfiliado?isbn=<?= $book->isbn_10; ?>" target="_blank">Casa del libro</a></li>
+    <li><a href="http://www.elcorteingles.es/tienda/libros/producto/libro_descripcion.asp?CODIISBN=<?= $book->isbn_10; ?>" target="_blank">El corte inglés</a></li>
 </ul>
 </div>
 
