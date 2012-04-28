@@ -80,13 +80,13 @@ class BooksParseService
 
     public function save(Book $book)
     {
-        if ($response = $this->get($book->hash))
+        if ($response = $this->get($book->google_id))
         {
             $params = array(
                 'className' => 'Books',
                 'objectId' => $response->objectId,
                 'object' => array(
-                    'hash' => $book->hash,
+                    'hash' => $book->google_id,
                     'link' => $book->link,
                     'title' => $book->title,
                     'description' => $book->description,
@@ -98,7 +98,7 @@ class BooksParseService
             $params = array(
                 'className' => 'Books',
                 'object' => array(
-                    'hash' => $book->hash,
+                    'hash' => $book->google_id,
                     'link' => $book->link,
                     'title' => $book->title,
                     'description' => $book->description,
