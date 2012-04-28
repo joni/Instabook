@@ -16,14 +16,14 @@ $this->breadcrumbs=array(
 <? if (!empty($books)): ?>
 <div class="book list">
 <? foreach ($books->toArray() as $book): ?>
-<div>
+<div class="book view">
 <div style="float: left; margin: 10px">
 <?= CHtml::image($book->image) ?>
 </div>
 <h2>
 <?=CHtml::link($book->title, array('view', 'id'=>$book->hash)) ?> - 
-<?= CHtml::link('+1', 
-    array('book/vote','id'=>md5($book->google_link), 'vote'=>+1)); ?>
+<?= CHtml::link('+1', array('vote','id'=>$book->hash, 'vote'=>+1)); ?> /
+<?= CHtml::link('-1', array('vote','id'=>$book->hash, 'vote'=>-1)); ?>
 </h2>
 <p><?= $book->author ?> <?= $book->category ?></p>
 <p><?= nl2br($book->description) ?></p>

@@ -3,6 +3,7 @@ $this->breadcrumbs=array(
 	'Book'=>array('/book'),
 	'View',
 );?>
+<div style="book view">
 <div style="float: left; margin: 10px">
 <?= CHtml::image($book->image) ?>
 </div>
@@ -15,3 +16,4 @@ $this->breadcrumbs=array(
 </p>
 
 <p><?= nl2br($book->description) ?></p>
+</div>
