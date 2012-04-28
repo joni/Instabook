@@ -27,4 +27,7 @@ class Book
         // ..
     }
 
+    public function vote($vote) {
+
+    }
 }

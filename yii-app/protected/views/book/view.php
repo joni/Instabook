@@ -3,7 +3,10 @@ $this->breadcrumbs=array(
 	'Book'=>array('/book'),
 	'View',
 );?>
-<h1><?php echo $this->id . '/' . $this->action->id; ?></h1>
+<h1><?= $book->title ?></h1>
+
+    <p><?= CHtml::link('+1', array('vote', 'id'=>$book->hash, 'vote'=>+1)) ?> / 
+<?= CHtml::link('-1', array('vote', 'id'=>$book->hash, 'vote'=>-1)) ?></a>
 
 <p>
 	You may change the content of this page by modifying

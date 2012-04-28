@@ -18,7 +18,8 @@ $this->breadcrumbs=array(
 <div>
 <h2>
 <?=CHtml::link($book->title, $book->google_link) ?> - 
-<?= CHtml::link('Recommend!', array('book/recommend')); ?>
+<?= CHtml::link('Recommend!', 
+    array('book/recommend','book'=>md5($book->google_link))); ?>
 </h2>
 <p><?= $book->author ?> <?= $book->category ?></p>
 <p><?= nl2br($book->description) ?></p>

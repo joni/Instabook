@@ -22,9 +22,16 @@ class BookController extends Controller
         ));
     }
 
-    public function actionView()
+    public function actionVote($id, $vote) {
+        $book = new Book($id);
+        $book->vote($vote);
+        $this->redirect(array('view', 'id'=>$id));
+    }
+
+    public function actionView($id)
     {
-        $this->render('view');
+        $book = new Book($id);
+        $this->render('view', array ('book'=>$book));
     }
 
     // Uncomment the following methods and override them if needed
