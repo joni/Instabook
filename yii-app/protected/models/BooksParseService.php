@@ -57,21 +57,54 @@ class BooksParseService
         
     }
 
-    public function save(Book $book)
+    public function get(Book $book)
     {
         $params = array(
             'className' => 'Books',
-            'object' => array(
-                'hash' => md5($book->link),
-                'link' => $book->link,
-                'title' => $book->title,
-                //'author' => $book->author,
-                'description' => $book->description,
-            )
+            'object' => array(),
+            'query' => array(
+                'hash' => $book->hash . '23452'
+            ),
+            'limit' => 1,
         );
-        $response = $this->parse->create($params);
+        $response = json_decode($this->parse->query($params));
 
-        die(var_dump($response));
+        if ($response->results)
+        {
+            return $response->results[0];
+        } else
+        {
+            echo false;
+        }
     }
 
+    public function save(Book $book)
+    {
+        if ($response = $this->get($book))
+        {
+            $params = array(
+                'className' => 'Books',
+                'objectId' => $response->objectId,
+                'object' => array(
+                    'hash' => $book->hash,
+                    'link' => $book->link,
+                    'title' => $book->title,
+                    'description' => $book->description,
+                )
+            );
+            $this->parse->update($params);
+        } else
+        {
+            $params = array(
+                'className' => 'Books',
+                'object' => array(
+                    'hash' => $book->hash,
+                    'link' => $book->link,
+                    'title' => $book->title,
+                    'description' => $book->description,
+                )
+            );
+            $this->parse->create($params);
+        }
+    }
 }

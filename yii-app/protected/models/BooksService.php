@@ -54,35 +54,47 @@ class BooksService
 
     public function search($query)
     {
-        $result = json_decode(file_get_contents($this->goole_rest_api_search . '?q=' . urlencode($query)));
-        foreach ($result->items as $item)
+        @ $result = json_decode(file_get_contents($this->goole_rest_api_search . '?q=' . urlencode($query)));
+        if ($result)
         {
-            $book = new Book();
-            if (isset($item->selfLink))
+            foreach ($result->items as $item)
             {
-                $book->google_link = $item->selfLink;
+                $book = new Book();
+                if (isset($item->selfLink))
+                {
+                    $book->link = $item->selfLink;
+                    $book->link = md5($book->link);
+                }
+                if (isset($item->volumeInfo->title))
+                {
+                    $book->title = $item->volumeInfo->title;
+                }
+                if (isset($item->volumeInfo->subtitle))
+                {
+                    $book->title .= ' : ' . $item->volumeInfo->subtitle;
+                }
+                if (isset($item->volumeInfo->description))
+                {
+                    $book->description = $item->volumeInfo->description;
+                }
+                if (isset($item->volumeInfo->authors[0]))
+                {
+                    $book->author = $item->volumeInfo->authors[0];
+                }
+                if (isset($item->industryIdentifiers->categories[0]))
+                {
+                    $book->category = $item->industryIdentifiers->categories[0];
+                }
+                @ $book_info_result = json_decode(file_get_contents($item->selfLink));
+                if ($book_info_result)
+                {
+                    if (isset($book_info_result->volumeInfo->imageLinks->thumbnail))
+                    {
+                        $book->image = $book_info_result->volumeInfo->imageLinks->thumbnail;
+                    }
+                }
+                $this->collection->add($book);
             }
-            if (isset($item->volumeInfo->title))
-            {
-                $book->title = $item->volumeInfo->title;
-            }
-            if (isset($item->volumeInfo->subtitle))
-            {
-                $book->title .= ' : ' . $item->volumeInfo->subtitle;
-            }
-            if (isset($item->volumeInfo->description))
-            {
-                $book->description = $item->volumeInfo->description;
-            }
-            if (isset($item->volumeInfo->authors[0]))
-            {
-                $book->author = $item->volumeInfo->authors[0];
-            }
-            if (isset($item->industryIdentifiers->categories[0]))
-            {
-                $book->category = $item->industryIdentifiers->categories[0];
-            }
-            $this->collection->add($book);
         }
 
         return $this->collection;
