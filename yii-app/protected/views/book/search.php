@@ -24,10 +24,9 @@ $this->breadcrumbs=array(
 <?= CHtml::image($book->image) ?>
 </div>
 <h2>
-<?= CHtml::link($book->title, array('view', 'id'=>$book->google_id)) ?> - 
-<?= CHtml::link('+1', array('vote','id'=>$book->google_id, 'vote'=>+1)); ?> /
-<?= CHtml::link('-1', array('vote','id'=>$book->google_id, 'vote'=>-1)); ?>
-</h2>
+<?= CHtml::link($book->title, array('view', 'id'=>$book->google_id)) ?> 
+(<span style="color:green">+<?= $book->vote ?> /
+<span style="color:red">-<?= $book->n_vote ?></span>)</h2>
 <p><?= $book->author ?> <?= $book->category ?></p>
 <p><?= nl2br($book->description) ?></p>
 </div>
